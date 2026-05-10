@@ -1,0 +1,6 @@
+{
+  "name": "Tea Ordering System",
+  "description": "A front-end and back-end ordering system for a tea shop, backed by Firebase.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
