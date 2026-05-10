@@ -1,0 +1,62 @@
+{
+  "entities": {
+    "MenuItem": {
+      "title": "MenuItem",
+      "description": "A tea drink on the menu",
+      "type": "object",
+      "properties": {
+        "nameZh": { "type": "string" },
+        "nameEn": { "type": "string" },
+        "priceM": { "type": "number" },
+        "priceL": { "type": "number" },
+        "category": { "type": "string" },
+        "isAvailable": { "type": "boolean" },
+        "createdAt": { "type": "number" },
+        "updatedAt": { "type": "number" }
+      },
+      "required": ["nameZh", "nameEn", "priceM", "priceL", "category", "isAvailable", "createdAt", "updatedAt"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "A customer's order",
+      "type": "object",
+      "properties": {
+        "customerName": { "type": "string" },
+        "items": {
+          "type": "array",
+          "items": { "type": "object" },
+          "description": "Items in the order. Bounded size."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "processing", "completed", "cancelled"]
+        },
+        "totalAmount": { "type": "number" },
+        "createdAt": { "type": "number" },
+        "updatedAt": { "type": "number" }
+      },
+      "required": ["customerName", "items", "status", "totalAmount", "createdAt", "updatedAt"]
+    },
+    "Admin": {
+      "title": "Admin",
+      "description": "Admin privileges",
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  "firestore": {
+    "/menuItems/{menuItemId}": {
+      "schema": { "$ref": "MenuItem" },
+      "description": "Menu items catalog"
+    },
+    "/orders/{orderId}": {
+      "schema": { "$ref": "Order" },
+      "description": "Customer orders"
+    },
+    "/admins/{userId}": {
+      "schema": { "$ref": "Admin" },
+      "description": "Admin users list"
+    }
+  }
+}
